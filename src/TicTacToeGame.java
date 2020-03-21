@@ -11,6 +11,7 @@ public class TicTacToeGame {
 							     {'-', '+', '-', '+', '-'},
 							     {' ', '|', ' ', '|', ' '}};
 	
+	//main is crowded, try to clear it up
 	public static void main(String args[]){
 		
 		boolean playing = true;
@@ -30,6 +31,7 @@ public class TicTacToeGame {
 				if (human){
 					break;
 				}
+				//check if no more possible moves. exit loop
 				else if(tieCount > 9){
 					System.out.println("It's a tie!");
 					break;
@@ -44,7 +46,7 @@ public class TicTacToeGame {
 			}
 			else if (answer.toLowerCase().equals("yes")){
 				playing = true;
-				//clearing game board
+				//clearing game board to continue playing
 				gameBoard[0][0] = ' ';
 				gameBoard[0][2] = ' ';
 				gameBoard[0][4] = ' ';
@@ -65,12 +67,14 @@ public class TicTacToeGame {
 		System.out.println("\nThank you for playing!!! Bye!");
 	}
 	
+	//iterator to print gameBoard
 	public static void printGameBoard(){
 		for (char[] element: gameBoard){
 			System.out.println(element);
 		}
 	}
 	
+	//humanTurn and compTurn are almost the same. try to consolidate
 	public static boolean humanTurn(){
 		
 		boolean valid = false;
@@ -81,7 +85,7 @@ public class TicTacToeGame {
 		int move = scan2.nextInt();
 		valid = numCases(move, 'X');
 		}
-		
+		//check win after every game
 		if (win(piece)){
 			printGameBoard();
 			System.out.println("\n\nYou won! Congratulations!");
@@ -112,7 +116,8 @@ public class TicTacToeGame {
 		return false;
 	}
 	
-	//converts number input into placement
+	//converts number input into piece placement
+	//checks if spot is occupied
 	public static boolean numCases(int num, char player){
 		
 		switch (num){
